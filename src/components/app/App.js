@@ -1,17 +1,23 @@
-import React from 'react';
-import Table from '../table/Table';
+import React, { useState } from 'react';
+import Cart from '../cart/Cart';
 import styles from './app.module.styl';
 
-const {
-	app,
-	title
-} = styles;
-
 function App() {
+	const {
+		app
+	} = styles;
+	let [ statusCheckout, setStatusCheckout ] = useState(false);
+
+	function openCheckout(status) {
+		setStatusCheckout(statusCheckout = !status);
+		console.warn(statusCheckout);
+	}
+
 	return (
 		<div className={ app }>
-			<h1 className={ title }>Таблица</h1>
-			<Table />
+			<Cart
+				onClick={ (status) => ( openCheckout(status) ) }
+			/>
 		</div>
 	);
 }

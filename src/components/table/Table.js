@@ -43,16 +43,13 @@ function Table() {
 		const newProds = [...state.products];
 		newProds[i] = {...newProds[i], current: count};
 
-		// console.log(newProds);
 		setState({ products: newProds });
 		totalPrice(newProds);
 	}
 
 	function deleteProduct(idProd) {
-		// console.log(idProd);
 		const newProds = [...state.products].filter((prod) => prod.id !== idProd);
-		//
-		// console.log(newProds);
+
 		setState({ products: newProds });
 		totalPrice(newProds);
 	}
@@ -61,10 +58,6 @@ function Table() {
 		const totalCount = newProds.reduce((sum, { price, current }) => sum += price * current, 0);
 
 		setTotal(totalCount);
-	}
-
-	function showModal() {
-
 	}
 
 	const {
@@ -87,13 +80,13 @@ function Table() {
 							min={0}
 							max={10}
 							countDef={current}
-							onChange={(count) => setCount(count, i)}
+							onChange={ (count) => setCount(count, i) }
 						/>
 					}
 				</th>
 				<th className={ td }>{price * current}</th>
 				<th className={ td }>
-					<button type="button" onClick={() => (deleteProduct(id))}>Delete</button>
+					<button type="button" onClick={ () => ( deleteProduct(id) ) }>Delete</button>
 				</th>
 			</tr>
 		);
@@ -118,9 +111,6 @@ function Table() {
 			<div className={ total }>
 				<span>Total:</span>
 				<span>{ totalCount }</span>
-			</div>
-			<div className="show-modal">
-				<button className="show-modal__btn" type="button" onClick={() => (showModal)}>Send</button>
 			</div>
 		</>
 	);
