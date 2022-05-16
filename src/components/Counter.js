@@ -58,7 +58,7 @@ function Counter(props) {
 }
 
 Counter.defaultProps = {
-	onChange: function(countDef) {}
+	onChange: function() {}
 }
 
 Counter.propTypes = {

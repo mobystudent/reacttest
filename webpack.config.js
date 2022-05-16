@@ -16,7 +16,7 @@ const config = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				exclude: /node_modules/
+				exclude: '/node_modules/'
 			},
 			{
 				test: /\.pug$/,
@@ -59,8 +59,7 @@ const config = {
 			filename: 'css/[contenthash].css'
 		}),
 		new ESLintPlugin({
-			extensions: ['js', 'jsx'],
-			exclude: /node_modules/
+			extensions: ['js', 'jsx']
 		}),
 	],
 	optimization: {

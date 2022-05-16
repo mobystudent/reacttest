@@ -88,7 +88,7 @@ function Table() {
 	}
 
 	function showModal() {
-		
+
 	}
 
 	return (
@@ -112,7 +112,7 @@ function Table() {
 				<span>{total}</span>
 			</div>
 			<div className="show-modal">
-				<button class="show-modal__btn" type="button" onClick={() => (showModal)}>Send</button>
+				<button className="show-modal__btn" type="button" onClick={() => (showModal)}>Send</button>
 			</div>
 		</>
 	);
