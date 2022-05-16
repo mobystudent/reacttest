@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Counter from './Counter';
+import Counter from '../counter/Counter';
+import styles from './table.module.styl';
 
 const stateDef = {
 	products: [
@@ -36,7 +37,7 @@ const stateDef = {
 
 function Table() {
 	let [ state, setState ] = useState(stateDef);
-	let [ total, setTotal ] = useState(0);
+	let [ totalCount, setTotal ] = useState(0);
 
 	function setCount(count, i) {
 		const newProds = [...state.products];
@@ -56,14 +57,31 @@ function Table() {
 		totalPrice(newProds);
 	}
 
+	function totalPrice(newProds) {
+		const totalCount = newProds.reduce((sum, { price, current }) => sum += price * current, 0);
+
+		setTotal(totalCount);
+	}
+
+	function showModal() {
+
+	}
+
+	const {
+		table,
+		th,
+		td,
+		total
+	} = styles;
+
 	const tableStuct = state.products.map((product, i) => {
 		const { id, title, price, current } = product;
 
 		return (
 			<tr key={id}>
-				<th className="table__td">{title}</th>
-				<th className="table__td">{price}</th>
-				<th className="table__td">
+				<th className={ td }>{title}</th>
+				<th className={ td }>{price}</th>
+				<th className={ td }>
 					{
 						<Counter
 							min={0}
@@ -73,43 +91,33 @@ function Table() {
 						/>
 					}
 				</th>
-				<th className="table__td">{price * current}</th>
-				<th className="table__td">
+				<th className={ td }>{price * current}</th>
+				<th className={ td }>
 					<button type="button" onClick={() => (deleteProduct(id))}>Delete</button>
 				</th>
 			</tr>
 		);
 	});
 
-	function totalPrice(newProds) {
-		const total = newProds.reduce((sum, { price, current }) => sum += price * current, 0);
-
-		setTotal(total);
-	}
-
-	function showModal() {
-
-	}
-
 	return (
 		<>
-			<table className="table">
+			<table className={ table }>
 				<thead className="table__head">
 					<tr>
-						<th className="table__th">Title</th>
-						<th className="table__th">Price</th>
-						<th className="table__th">Count</th>
-						<th className="table__th">Total</th>
-						<th className="table__th">Delete</th>
+						<th className={ th }>Title</th>
+						<th className={ th }>Price</th>
+						<th className={ th }>Count</th>
+						<th className={ th }>Total</th>
+						<th className={ th }>Delete</th>
 					</tr>
 				</thead>
 				<tbody className="table__body">
 					{tableStuct}
 				</tbody>
 			</table>
-			<div className="total">
+			<div className={ total }>
 				<span>Total:</span>
-				<span>{total}</span>
+				<span>{ totalCount }</span>
 			</div>
 			<div className="show-modal">
 				<button className="show-modal__btn" type="button" onClick={() => (showModal)}>Send</button>

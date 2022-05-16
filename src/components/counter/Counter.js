@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
+import styles from './counter.module.styl';
 
 function Counter(props) {
 	let { min, max, countDef, onChange } = props;
@@ -18,13 +19,11 @@ function Counter(props) {
 
 	function check(countVal) {
 		const checkCount = Math.min(Math.max(min, countVal), max);
-		// console.log(setCount);
 
 		setCount({
 			countItem: checkCount,
 			inputValue: checkCount
 		});
-		// console.log(stateCount);
 
 		onChange(checkCount);
 	}
@@ -40,19 +39,24 @@ function Counter(props) {
 	// 		inputValue: newValue
 	// 	});
 	// }
+	const {
+		counter,
+		input,
+		btn
+	} = styles;
 
 	return (
-		<div className="counter">
-			<button className="counter__btn" type="button" onClick={decrease}>-</button>
+		<div className={ counter }>
+			<button className={ btn } type="button" onClick={ decrease }>-</button>
 			<input
-				className="counter__input"
+				className={ input }
 				type="text"
-				value={stateCount.countItem}
+				value={ stateCount.countItem }
 				onChange={({ target }) => checkType(parseInt(target.value))}
 				// onBlur={({ target }) => checkType(parseInt(target.value))}
 				// key={stateCount.countItem}
 			/>
-			<button className="counter__btn" type="button" onClick={increase}>+</button>
+			<button className={ btn } type="button" onClick={ increase }>+</button>
 		</div>
 	);
 }

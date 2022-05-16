@@ -26,7 +26,37 @@ const config = {
 				}
 			},
 			{
-				test: /\.styl$/,
+				test: /\.module\.styl/,
+				exclude: '/node_modules/',
+				use: [
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options:{
+							importLoaders: 2,
+							modules: {
+								localIdentName: '[local]__[sha1:hash:hex:7]'
+							}
+						}
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									'postcss-preset-env',
+									'mqpacker',
+									'cssnano'
+								],
+							}
+						},
+					},
+					'stylus-loader'
+				]
+			},
+			{
+				test: /^((?!\.module).)*(styl|css)$/,
+				exclude: '/node_modules/',
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
