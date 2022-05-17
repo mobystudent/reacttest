@@ -12,11 +12,11 @@ function Cart(props) {
 		openForm,
 		btn
 	} = styles;
-	let [ statusCart, setStatusCart ] = useState(false);
+	let [ statusCart, setStatusCart ] = useState('');
 
 	function showCheckout() {
-		setStatusCart(!statusCart)
-		onClickForm(!statusCart);
+		setStatusCart(!statusCart ? 'checkout' : '')
+		onClickForm(!statusCart ? 'checkout' : '');
 	}
 
 	return (

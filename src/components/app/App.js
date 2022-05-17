@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Cart from '../cart/Cart';
 import Checkout from '../checkout/Checkout';
+import Result from '../result/Result';
 import styles from './app.module.styl';
 
 function App() {
 	const {
 		app
 	} = styles;
-	let [ statusCheckout, setStatusCheckout ] = useState(false);
+	let [ statusCheckout, setStatusCheckout ] = useState('');
 
 	function openNextSection(status) {
-		console.warn(status);
 		setStatusCheckout(status);
 	}
 
@@ -22,6 +22,9 @@ function App() {
 			<Checkout
 				active={ statusCheckout }
 				onClick={ (status) => ( openNextSection(status) ) }
+			/>
+			<Result
+				active={ statusCheckout }
 			/>
 		</div>
 	);

@@ -3,8 +3,7 @@ import propTypes from 'prop-types';
 import styles from './checkout.module.styl';
 
 function Checkout(props) {
-	const { active = false, onClick: onClickForm } = props;
-	console.log(active);
+	const { active = '', onClick: onClickForm } = props;
 	const {
 		checkout,
 		label,
@@ -15,15 +14,17 @@ function Checkout(props) {
 		name,
 		hide
 	} = styles;
-	let [ statusCheckout, setStatusCheckout ] = useState(false);
+	let [ statusCheckout, setStatusCheckout ] = useState('');
 
-	function showResult() {
+	function showResult(event) {
+		event.preventDefault();
+
 		setStatusCheckout(!statusCheckout ? 'result' : '')
 		onClickForm(!statusCheckout ? 'result' : '');
 	}
 
 	return (
-		<div className={ active ? checkout : hide }>
+		<div className={ active === 'checkout' ? checkout : hide }>
 			<h1 className={ title }>Checkout</h1>
 			<form className={ form } action='#'>
 				<label className={ label } htmlFor='nameOrder'>
@@ -38,7 +39,7 @@ function Checkout(props) {
 					<span className={ name }>Your email</span>
 					<input className={ input } type='email' id='emailOrder' />
 				</label>
-				<button className={ btn } type='submin' onClick={ showResult }>Order</button>
+				<button className={ btn } type='submin' onClick={ (event) => showResult(event) }>Order</button>
 			</form>
 		</div>
 	);
@@ -49,7 +50,7 @@ Checkout.defaultProps = {
 }
 
 Checkout.propTypes = {
-	active: propTypes.bool.isRequired,
+	active: propTypes.string.isRequired,
 	onClick: propTypes.func
 };
 
