@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Counter from '../counter/Counter';
+import Counter from '~c/counter';
 import styles from './table.module.styl';
 
 const stateDef = {

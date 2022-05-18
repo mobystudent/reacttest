@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Cart from '../cart/Cart';
-import Checkout from '../checkout/Checkout';
-import Result from '../result/Result';
+import Cart from '~c/cart';
+import Checkout from '~c/checkout';
+import Result from '~c/result';
 import styles from './app.module.styl';
 
 function App() {

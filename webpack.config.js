@@ -110,6 +110,11 @@ const config = {
 				},
 			}),
 		],
+	},
+	resolve: {
+		alias: {
+			'~c': path.resolve(__dirname, 'src/components/')
+		}
 	}
 };
 

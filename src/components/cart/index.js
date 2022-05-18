@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import Table from '../table/Table';
+import Table from '~c/table';
 import styles from './cart.module.styl';
 
 function Cart(props) {
