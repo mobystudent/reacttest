@@ -3,7 +3,7 @@ import propTypes from 'prop-types';
 import styles from './checkout.module.styl';
 
 function Checkout(props) {
-	const { active = '', onClick: onClickForm } = props;
+	const { onClick: onClickForm } = props;
 	const {
 		checkout,
 		label,
@@ -11,8 +11,7 @@ function Checkout(props) {
 		form,
 		input,
 		btn,
-		name,
-		hide
+		name
 	} = styles;
 	let [ statusCheckout, setStatusCheckout ] = useState('');
 
@@ -24,7 +23,7 @@ function Checkout(props) {
 	}
 
 	return (
-		<div className={ active === 'checkout' ? checkout : hide }>
+		<div className={ checkout }>
 			<h1 className={ title }>Checkout</h1>
 			<form className={ form } action='#'>
 				<label className={ label } htmlFor='nameOrder'>
@@ -50,7 +49,6 @@ Checkout.defaultProps = {
 }
 
 Checkout.propTypes = {
-	active: propTypes.string.isRequired,
 	onClick: propTypes.func
 };
 
