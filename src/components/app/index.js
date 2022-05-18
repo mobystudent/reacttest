@@ -9,7 +9,27 @@ class App extends React.Component {
 		super();
 
 		this.state = {
-			statusPage: 'cart'
+			statusPage: 'cart',
+			formData: {
+				name: {
+					labelId: 'nameOrder',
+					title: 'Your name',
+					type: 'text',
+					value: ''
+				},
+				phone: {
+					labelId: 'phoneOrder',
+					title: 'Your phone',
+					type: 'text',
+					value: ''
+				},
+				email: {
+					labelId: 'emailOrder',
+					title: 'Your email',
+					type: 'email',
+					value: ''
+				}
+			}
 		};
 		this.component = '';
 	}
@@ -27,6 +47,7 @@ class App extends React.Component {
 				break;
 			case 'checkout':
 				this.component = <Checkout
+					formData={ this.state.formData }
 					onClick={ (status) => ( this.setState({ statusPage: status }) ) }
 				/>
 				break;
