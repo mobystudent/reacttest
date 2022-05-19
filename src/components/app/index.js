@@ -34,6 +34,13 @@ class App extends React.Component {
 		this.component = '';
 	}
 
+	changeValues(name, value) {
+		const newFormData = { ...this.state.formData };
+		newFormData[name] = { ...newFormData[name], value };
+
+		this.setState({ formData: newFormData });
+	}
+
 	render() {
 		const {
 			app
@@ -49,7 +56,8 @@ class App extends React.Component {
 				this.component = <Checkout
 					formData={ this.state.formData }
 					onBack={ (status) => ( this.setState({ statusPage: status }) ) }
-					onClick={ (status) => ( this.setState({ statusPage: status }) ) }
+					onSave={ (name, value) => this.changeValues(name, value) }
+					onSend={ (status) => ( this.setState({ statusPage: status }) ) }
 				/>
 				break;
 			case 'result':

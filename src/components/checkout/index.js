@@ -5,18 +5,14 @@ import styles from './checkout.module.styl';
 class Checkout extends React.Component {
 	static propTypes = {
 		formData: propTypes.object.isRequired,
-		onClick: propTypes.func.isRequired,
-		onBack: propTypes.func.isRequired
+		onSend: propTypes.func.isRequired,
+		onBack: propTypes.func.isRequired,
+		onSave: propTypes.func.isRequired
 	};
 
-	constructor(props) {
+	constructor() {
 		super();
 
-		const { formData, onClick: onClickForm, onBack } = props;
-
-		this.onClickForm = onClickForm;
-		this.onBack = onBack;
-		this.formData = formData;
 		this.state = {
 			statusPage: ''
 		};
@@ -25,7 +21,7 @@ class Checkout extends React.Component {
 	showResult(elem) {
 		const typeBtn = elem.dataset.type;
 
-		typeBtn === 'result' ? this.onClickForm('result') : this.onBack('cart');
+		typeBtn === 'result' ? this.props.onSend('result') : this.props.onBack('cart');
 	}
 
 	render() {
@@ -41,13 +37,19 @@ class Checkout extends React.Component {
 		} = styles;
 		const formBody = [];
 
-		for (let field in this.formData) {
-			const { labelId, title, type } = this.formData[field];
+		for (let field in this.props.formData) {
+			const { labelId, title, type, value } = this.props.formData[field];
 
 			formBody.push(
 				<label className={ label } key={ labelId } htmlFor={ labelId }>
 					<span className={ name }>{ title }</span>
-					<input className={ input } type={ type } id={ labelId } />
+					<input
+						className={ input }
+						type={ type }
+						id={ labelId }
+						value={ value }
+						onChange={ (event) => this.props.onSave(field, event.target.value) }
+					/>
 				</label>
 			);
 		}
