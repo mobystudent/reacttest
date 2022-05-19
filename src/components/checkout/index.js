@@ -3,31 +3,29 @@ import propTypes from 'prop-types';
 import styles from './checkout.module.styl';
 
 class Checkout extends React.Component {
-	static defaultProps = {
-		onClick: function() {}
-	}
-
 	static propTypes = {
 		formData: propTypes.object.isRequired,
-		onClick: propTypes.func
+		onClick: propTypes.func.isRequired,
+		onBack: propTypes.func.isRequired
 	};
 
 	constructor(props) {
 		super();
 
-		const { formData, onClick: onClickForm } = props;
+		const { formData, onClick: onClickForm, onBack } = props;
 
 		this.onClickForm = onClickForm;
+		this.onBack = onBack;
 		this.formData = formData;
 		this.state = {
 			statusPage: ''
 		};
 	}
 
-	showResult(event) {
-		event.preventDefault();
+	showResult(elem) {
+		const typeBtn = elem.dataset.type;
 
-		this.onClickForm(!this.state.statusPage ? 'result' : '');
+		typeBtn === 'result' ? this.onClickForm('result') : this.onBack('cart');
 	}
 
 	render() {
@@ -38,7 +36,8 @@ class Checkout extends React.Component {
 			form,
 			input,
 			btn,
-			name
+			name,
+			wrap
 		} = styles;
 		const formBody = [];
 
@@ -58,7 +57,10 @@ class Checkout extends React.Component {
 				<h1 className={ title }>Checkout</h1>
 				<form className={ form } action='#'>
 					{ formBody }
-					<button className={ btn } type='submin' onClick={ (event) => this.showResult(event) }>Order</button>
+					<div className={ wrap }>
+						<button className={ btn } data-type='back' type='button' onClick={ ({ target }) => this.showResult(target) }>Back</button>
+						<button className={ btn } data-type='result' type='button' onClick={ ({ target }) => this.showResult(target) }>Order</button>
+					</div>
 				</form>
 			</div>
 		);

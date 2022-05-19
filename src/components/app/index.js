@@ -48,6 +48,7 @@ class App extends React.Component {
 			case 'checkout':
 				this.component = <Checkout
 					formData={ this.state.formData }
+					onBack={ (status) => ( this.setState({ statusPage: status }) ) }
 					onClick={ (status) => ( this.setState({ statusPage: status }) ) }
 				/>
 				break;
