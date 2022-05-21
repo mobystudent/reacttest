@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import styles from './checkout.module.styl';
+import stylesM from './modal.module.styl';
 
 class Checkout extends React.Component {
 	static propTypes = {
@@ -14,7 +15,8 @@ class Checkout extends React.Component {
 		super();
 
 		this.state = {
-			statusPage: ''
+			statusPage: '',
+			statusModal: false
 		};
 	}
 
@@ -22,6 +24,10 @@ class Checkout extends React.Component {
 		const typeBtn = elem.dataset.type;
 
 		typeBtn === 'result' ? this.props.onSend('result') : this.props.onBack('cart');
+	}
+
+	switchModal(status) {
+		this.setState({ statusModal: !status });
 	}
 
 	render() {
@@ -35,7 +41,16 @@ class Checkout extends React.Component {
 			name,
 			wrap
 		} = styles;
+		const {
+			modal,
+			titlea,
+			text,
+			btns,
+			show,
+			hide
+		} = stylesM;
 		const formBody = [];
+		const modalClass = [modal, this.state.statusModal ? show : hide].join(' ');
 
 		for (let field in this.props.formData) {
 			const { labelId, title, type, value } = this.props.formData[field];
@@ -55,16 +70,26 @@ class Checkout extends React.Component {
 		}
 
 		return (
-			<div className={ checkout }>
-				<h1 className={ title }>Checkout</h1>
-				<form className={ form } action='#'>
-					{ formBody }
-					<div className={ wrap }>
-						<button className={ btn } data-type='back' type='button' onClick={ ({ target }) => this.showResult(target) }>Back</button>
-						<button className={ btn } data-type='result' type='button' onClick={ ({ target }) => this.showResult(target) }>Order</button>
+			<>
+				<div className={ checkout }>
+					<h1 className={ title }>Checkout</h1>
+					<form className={ form } action='#'>
+						{ formBody }
+						<div className={ wrap }>
+							<button className={ btn } data-type='back' type='button' onClick={ ({ target }) => this.showResult(target) }>Back</button>
+							<button className={ btn } type='button' onClick={ () => this.switchModal(this.state.statusModal) }>Order</button>
+						</div>
+					</form>
+					<div className={ modalClass }>
+						<h2 className={ titlea }>Подтвердите отправку данных</h2>
+						<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
+						<div className={ btns }>
+							<button className={ btn } type='button' onClick={ () => this.switchModal(this.state.statusModal) }>Нет</button>
+							<button className={ btn } data-type='result' type='button' onClick={ ({ target }) => this.showResult(target) }>Да</button>
+						</div>
 					</div>
-				</form>
-			</div>
+				</div>
+			</>
 		);
 	}
 }
