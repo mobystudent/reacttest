@@ -1,7 +1,7 @@
 import React from 'react';
-import Cart from '~c/cart';
-import Checkout from '~c/checkout';
-import Result from '~c/result';
+import Cart from '~p/cart';
+import Checkout from '~p/checkout';
+import Result from '~p/result';
 import styles from './app.module.styl';
 
 class App extends React.Component {

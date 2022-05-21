@@ -113,7 +113,9 @@ const config = {
 	},
 	resolve: {
 		alias: {
-			'~c': path.resolve(__dirname, 'src/components/')
+			'~c': path.resolve(__dirname, 'src/components/'),
+			'~p': path.resolve(__dirname, 'src/pages/'),
+			'~s': path.resolve(__dirname, 'src/store/')
 		}
 	}
 };
