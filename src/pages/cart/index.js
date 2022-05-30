@@ -15,7 +15,7 @@ function Cart(props) {
 	let [ statusCart, setStatusCart ] = useState('');
 
 	function showCheckout() {
-		setStatusCart(!statusCart ? 'checkout' : '')
+		setStatusCart(!statusCart ? 'checkout' : '');
 		onClickForm(!statusCart ? 'checkout' : '');
 	}
 
