@@ -1,14 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { observer } from 'mobx-react';
 import Modal from '~c/modal';
+import checkoutStore from '~s/checkout.store';
 import styles from './checkout.module.styl';
 
 class Checkout extends React.Component {
 	static propTypes = {
-		formData: propTypes.object.isRequired,
 		onSend: propTypes.func.isRequired,
-		onBack: propTypes.func.isRequired,
-		onSave: propTypes.func.isRequired
+		onBack: propTypes.func.isRequired
 	};
 
 	constructor() {
@@ -39,8 +39,8 @@ class Checkout extends React.Component {
 		} = styles;
 		const formBody = [];
 
-		for (let field in this.props.formData) {
-			const { labelId, title, type, value } = this.props.formData[field];
+		for (let field in checkoutStore.formData) {
+			const { labelId, title, type, value } = checkoutStore.formData[field];
 
 			formBody.push(
 				<label className={ label } key={ labelId } htmlFor={ labelId }>
@@ -50,7 +50,7 @@ class Checkout extends React.Component {
 						type={ type }
 						id={ labelId }
 						value={ value }
-						onChange={ (event) => this.props.onSave(field, event.target.value) }
+						onChange={ (event) => checkoutStore.change(field, event.target.value) }
 					/>
 				</label>
 			);
@@ -76,4 +76,4 @@ class Checkout extends React.Component {
 	}
 }
 
-export default Checkout;
+export default observer(Checkout);

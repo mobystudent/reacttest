@@ -10,35 +10,8 @@ class App extends React.Component {
 
 		this.state = {
 			statusPage: 'cart',
-			formData: {
-				name: {
-					labelId: 'nameOrder',
-					title: 'Your name',
-					type: 'text',
-					value: ''
-				},
-				phone: {
-					labelId: 'phoneOrder',
-					title: 'Your phone',
-					type: 'text',
-					value: ''
-				},
-				email: {
-					labelId: 'emailOrder',
-					title: 'Your email',
-					type: 'email',
-					value: ''
-				}
-			}
 		};
 		this.component = '';
-	}
-
-	changeValues(name, value) {
-		const newFormData = { ...this.state.formData };
-		newFormData[name] = { ...newFormData[name], value };
-
-		this.setState({ formData: newFormData });
 	}
 
 	render() {
@@ -54,9 +27,7 @@ class App extends React.Component {
 				break;
 			case 'checkout':
 				this.component = <Checkout
-					formData={ this.state.formData }
 					onBack={ (status) => ( this.setState({ statusPage: status }) ) }
-					onSave={ (name, value) => this.changeValues(name, value) }
 					onSend={ (status) => ( this.setState({ statusPage: status }) ) }
 				/>
 				break;
