@@ -9,7 +9,8 @@ const Table = observer(() => {
 		table,
 		th,
 		td,
-		total
+		total,
+		btn
 	} = styles;
 
 	const tableStuct = cartStore.products.map((product, i) => {
@@ -31,7 +32,7 @@ const Table = observer(() => {
 				</th>
 				<th className={ td }>{ price * current }</th>
 				<th className={ td }>
-					<button type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
+					<button className={ btn } type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
 				</th>
 			</tr>
 		);
