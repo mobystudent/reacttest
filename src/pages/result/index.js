@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './result.module.styl';
 import checkoutStore from '~s/checkout.store';
+import cartStore from '~s/cart.store';
 
 function Result() {
 	const {
@@ -22,7 +23,7 @@ function Result() {
 	return (
 		<div className={ result }>
 			<h1 className={ title }>Congratulation { nameUser }</h1>
-			<p className={ text }>Your order has been successfully sent <br/> Your total is</p>
+			<p className={ text }>Your order has been successfully sent <br/> Your total is { cartStore.total }</p>
 			<p className={ text }>We&quot;ll call on this number { namePhone }</p>
 		</div>
 	);
