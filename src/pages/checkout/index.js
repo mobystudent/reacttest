@@ -3,6 +3,7 @@ import propTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import Modal from '~c/modal';
 import checkoutStore from '~s/checkout.store';
+import modalStore from '~s/modal.store';
 import styles from './checkout.module.styl';
 
 class Checkout extends React.Component {
@@ -15,9 +16,9 @@ class Checkout extends React.Component {
 		super();
 
 		this.state = {
-			statusPage: '',
-			statusModal: false
+			statusPage: ''
 		};
+		this.modal = '';
 	}
 
 	showResult(elem) {
@@ -56,6 +57,14 @@ class Checkout extends React.Component {
 			);
 		}
 
+		if (modalStore.status) {
+			this.modal = <Modal
+				onResult={ (page) => this.showResult(page) }
+			/>
+		} else {
+			this.modal = '';
+		}
+
 		return (
 			<div className={ checkout }>
 				<h1 className={ title }>Checkout</h1>
@@ -63,14 +72,10 @@ class Checkout extends React.Component {
 					{ formBody }
 					<div className={ wrap }>
 						<button className={ btn } data-type='back' type='button' onClick={ ({ target }) => this.showResult(target) }>Back</button>
-						<button className={ btn } type='button' onClick={ () => this.setState({ statusModal: true }) }>Order</button>
+						<button className={ btn } type='button' onClick={ () => modalStore.switch(true) }>Order</button>
 					</div>
 				</form>
-				<Modal
-					status={ this.state.statusModal }
-					onModal={ (status) => ( this.setState({ statusModal: status }) ) }
-					onResult={ (page) => this.showResult(page) }
-				/>
+				{ this.modal }
 			</div>
 		);
 	}

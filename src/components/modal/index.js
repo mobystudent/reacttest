@@ -1,35 +1,32 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { observer } from 'mobx-react';
+import modalStore from '~s/modal.store';
 import styles from './modal.module.styl';
 
-function Modal(props) {
+const Modal = observer((props) => {
 	const {
 		block,
 		title,
 		text,
 		btns,
-		btn,
-		show,
-		hide
+		btn
 	} = styles;
-	const { status, onModal, onResult } = props;
-	const modalClass = [block, status ? show : hide].join(' ');
+	const { onResult } = props;
 
 	return (
-		<div className={ modalClass }>
+		<div className={ block }>
 			<h2 className={ title }>Подтвердите отправку данных</h2>
 			<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
 			<div className={ btns }>
-				<button className={ btn } type='button' onClick={ () => onModal(false) }>Нет</button>
+				<button className={ btn } type='button' onClick={ () => modalStore.switch(false) }>Нет</button>
 				<button className={ btn } data-type='result' type='button' onClick={ ({ target }) => onResult(target) }>Да</button>
 			</div>
 		</div>
 	);
-}
+});
 
 Modal.propTypes = {
-	status: propTypes.bool.isRequired,
-	onModal: propTypes.func.isRequired,
 	onResult: propTypes.func.isRequired
 };
 
