@@ -1,10 +1,9 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import Table from '~c/table';
+import routerStore from '~s/router.store';
 import styles from './cart.module.styl';
 
-function Cart(props) {
-	const { onClick: onClickForm } = props;
+function Cart() {
 	const {
 		cart,
 		title,
@@ -17,18 +16,10 @@ function Cart(props) {
 			<h1 className={ title }>Корзина</h1>
 			<Table />
 			<div className={ openForm }>
-				<button className={ btn } type="button" onClick={ () => onClickForm('checkout') }>Send</button>
+				<button className={ btn } type="button" onClick={ () => routerStore.moveTo('checkout') }>Send</button>
 			</div>
 		</div>
 	);
 }
-
-Cart.defaultProps = {
-	onClick: function() {}
-}
-
-Cart.propTypes = {
-	onClick: propTypes.func
-};
 
 export default Cart;

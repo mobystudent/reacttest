@@ -1,30 +1,16 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import Modal from '~c/modal';
 import checkoutStore from '~s/checkout.store';
+import routerStore from '~s/router.store';
 import modalStore from '~s/modal.store';
 import styles from './checkout.module.styl';
 
 class Checkout extends React.Component {
-	static propTypes = {
-		onSend: propTypes.func.isRequired,
-		onBack: propTypes.func.isRequired
-	};
-
 	constructor() {
 		super();
 
-		this.state = {
-			statusPage: ''
-		};
 		this.modal = '';
-	}
-
-	showResult(elem) {
-		const typeBtn = elem.dataset.type;
-
-		typeBtn === 'result' ? this.props.onSend('result') : this.props.onBack('cart');
 	}
 
 	render() {
@@ -58,9 +44,7 @@ class Checkout extends React.Component {
 		}
 
 		if (modalStore.status) {
-			this.modal = <Modal
-				onResult={ (page) => this.showResult(page) }
-			/>
+			this.modal = <Modal />
 		} else {
 			this.modal = '';
 		}
@@ -71,7 +55,7 @@ class Checkout extends React.Component {
 				<form className={ form } action='#'>
 					{ formBody }
 					<div className={ wrap }>
-						<button className={ btn } data-type='back' type='button' onClick={ ({ target }) => this.showResult(target) }>Back</button>
+						<button className={ btn } type='button' onClick={ () => routerStore.moveTo('cart') }>Back</button>
 						<button className={ btn } type='button' onClick={ () => modalStore.switch(true) }>Order</button>
 					</div>
 				</form>

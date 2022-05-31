@@ -1,10 +1,10 @@
 import React from 'react';
-import propTypes from 'prop-types';
 import { observer } from 'mobx-react';
 import modalStore from '~s/modal.store';
+import routerStore from '~s/router.store';
 import styles from './modal.module.styl';
 
-const Modal = observer((props) => {
+const Modal = observer(() => {
 	const {
 		block,
 		title,
@@ -12,7 +12,6 @@ const Modal = observer((props) => {
 		btns,
 		btn
 	} = styles;
-	const { onResult } = props;
 
 	return (
 		<div className={ block }>
@@ -20,14 +19,10 @@ const Modal = observer((props) => {
 			<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
 			<div className={ btns }>
 				<button className={ btn } type='button' onClick={ () => modalStore.switch(false) }>Нет</button>
-				<button className={ btn } data-type='result' type='button' onClick={ ({ target }) => onResult(target) }>Да</button>
+				<button className={ btn } type='button' onClick={ () => routerStore.moveTo('result') }>Да</button>
 			</div>
 		</div>
 	);
 });
-
-Modal.propTypes = {
-	onResult: propTypes.func.isRequired
-};
 
 export default Modal;

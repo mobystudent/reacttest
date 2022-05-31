@@ -11,7 +11,6 @@ class Modal {
 	status = false;
 
 	switch(val) {
-		console.log(val);
 		this.status = val;
 	}
 }
