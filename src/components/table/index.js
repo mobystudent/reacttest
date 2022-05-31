@@ -1,65 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { observer } from 'mobx-react';
 import Counter from '~c/counter';
+import cartStore from '~s/cart.store';
 import styles from './table.module.styl';
 
-const stateDef = {
-	products: [
-		{
-			id: 100,
-			title: 'Ipnone 200',
-			price: 12000,
-			rest: 10,
-			current: 1
-		},
-		{
-			id: 101,
-			title: 'Samsung AAZ8',
-			price: 22000,
-			rest: 5,
-			current: 1
-		},
-		{
-			id: 103,
-			title: 'Nokia 3310',
-			price: 5000,
-			rest: 2,
-			current: 1
-		},
-		{
-			id: 105,
-			title: 'Huawei ZZ',
-			price: 15000,
-			rest: 8,
-			current: 1
-		}
-	]
-}
-
-function Table() {
-	let [ state, setState ] = useState(stateDef);
-	let [ totalCount, setTotal ] = useState(0);
-
-	function setCount(count, i) {
-		const newProds = [...state.products];
-		newProds[i] = {...newProds[i], current: count};
-
-		setState({ products: newProds });
-		totalPrice(newProds);
-	}
-
-	function deleteProduct(idProd) {
-		const newProds = [...state.products].filter((prod) => prod.id !== idProd);
-
-		setState({ products: newProds });
-		totalPrice(newProds);
-	}
-
-	function totalPrice(newProds) {
-		const totalCount = newProds.reduce((sum, { price, current }) => sum += price * current, 0);
-
-		setTotal(totalCount);
-	}
-
+const Table = observer(() => {
 	const {
 		table,
 		th,
@@ -67,26 +12,26 @@ function Table() {
 		total
 	} = styles;
 
-	const tableStuct = state.products.map((product, i) => {
+	const tableStuct = cartStore.products.map((product, i) => {
 		const { id, title, price, current } = product;
 
 		return (
 			<tr key={id}>
-				<th className={ td }>{title}</th>
-				<th className={ td }>{price}</th>
+				<th className={ td }>{ title }</th>
+				<th className={ td }>{ price }</th>
 				<th className={ td }>
 					{
 						<Counter
-							min={0}
-							max={10}
+							min={ 1 }
+							max={ 10 }
 							countDef={current}
-							onChange={ (count) => setCount(count, i) }
+							onChange={ (count) => cartStore.count(count, i) }
 						/>
 					}
 				</th>
-				<th className={ td }>{price * current}</th>
+				<th className={ td }>{ price * current }</th>
 				<th className={ td }>
-					<button type="button" onClick={ () => ( deleteProduct(id) ) }>Delete</button>
+					<button type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
 				</th>
 			</tr>
 		);
@@ -110,10 +55,10 @@ function Table() {
 			</table>
 			<div className={ total }>
 				<span>Total:</span>
-				<span>{ totalCount }</span>
+				<span>{ cartStore.total }</span>
 			</div>
 		</>
 	);
-}
+});
 
 export default Table;
