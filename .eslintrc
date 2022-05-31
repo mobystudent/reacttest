@@ -25,8 +25,9 @@
 		"ecmaVersion": "11",
 		"sourceType": "module",
 		"ecmaFeatures": {
-			"jsx": true
-		}
+			"jsx": true,
+			"legacyDecorators": true
+		},
 	},
 	ignorePatterns: ["node_modules/"],
 	settings: {
