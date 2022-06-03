@@ -5,6 +5,7 @@ class Cart {
 		makeObservable(this, {
 			products: observable,
 			total: computed,
+			changeCount: computed,
 			count: action,
 			delete: action
 		});
@@ -43,6 +44,12 @@ class Cart {
 
 	get total() {
 		return this.products.reduce((sum, { price, current }) => sum + price * current, 0);
+	}
+
+	get changeCount() {
+		return this.products.map((handler, i) => {
+			return (count) => this.count(count, i);
+		});
 	}
 
 	count(count, i) {

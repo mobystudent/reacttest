@@ -25,8 +25,8 @@ const Table = observer(() => {
 						<Counter
 							min={ 1 }
 							max={ 10 }
-							countDef={current}
-							onChange={ (count) => cartStore.count(count, i) }
+							countDef={ current }
+							onChange={ cartStore.changeCount[i] }
 						/>
 					}
 				</th>

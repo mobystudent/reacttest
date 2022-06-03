@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import propTypes from 'prop-types';
 import styles from './counter.module.styl';
 
@@ -72,4 +72,4 @@ Counter.propTypes = {
 	onChange: propTypes.func
 };
 
-export default Counter;
+export default memo(Counter);
