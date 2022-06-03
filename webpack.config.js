@@ -14,7 +14,7 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				loader: 'babel-loader',
 				exclude: '/node_modules/'
 			},
@@ -116,7 +116,8 @@ const config = {
 			'~c': path.resolve(__dirname, 'src/components/'),
 			'~p': path.resolve(__dirname, 'src/pages/'),
 			'~s': path.resolve(__dirname, 'src/store/')
-		}
+		},
+		extensions: ['.js', '.jsx']
 	}
 };
 
