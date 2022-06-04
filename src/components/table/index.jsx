@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { observer } from 'mobx-react';
 import Counter from '~c/counter';
 import cartStore from '~s/cart.store';
@@ -13,30 +13,32 @@ const Table = observer(() => {
 		btn
 	} = styles;
 
-	const tableStuct = cartStore.products.map((product, i) => {
-		const { id, title, price, current } = product;
+	const tableStuct = useMemo(() => {
+		return cartStore.products.map((product, i) => {
+			const { id, title, price, current } = product;
 
-		return (
-			<tr key={id}>
-				<th className={ td }>{ title }</th>
-				<th className={ td }>{ price }</th>
-				<th className={ td }>
-					{
-						<Counter
-							min={ 1 }
-							max={ 10 }
-							countDef={ current }
-							onChange={ cartStore.changeCount[i] }
-						/>
-					}
-				</th>
-				<th className={ td }>{ price * current }</th>
-				<th className={ td }>
-					<button className={ btn } type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
-				</th>
-			</tr>
-		);
-	});
+			return (
+				<tr key={id}>
+					<th className={ td }>{ title }</th>
+					<th className={ td }>{ price }</th>
+					<th className={ td }>
+						{
+							<Counter
+								min={ 1 }
+								max={ 10 }
+								countDef={ current }
+								onChange={ (count) => cartStore.count(count, i) }
+							/>
+						}
+					</th>
+					<th className={ td }>{ price * current }</th>
+					<th className={ td }>
+						<button className={ btn } type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
+					</th>
+				</tr>
+			);
+		});
+	}, [btn, td]);
 
 	return (
 		<>
