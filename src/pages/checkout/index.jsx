@@ -14,24 +14,31 @@ const Checkout = observer(() => {
 		input,
 		btn,
 		name,
-		wrap
+		wrap,
+		elem,
+		error
 	} = styles;
 	const formBody = [];
 
 	for (let field in checkoutStore.formData) {
-		const { labelId, title, type, value } = checkoutStore.formData[field];
+		const { labelId, title, type, placeholder, required, value, valid, message = '' } = checkoutStore.formData[field];
 
 		formBody.push(
-			<label className={ label } key={ labelId } htmlFor={ labelId }>
-				<span className={ name }>{ title }</span>
-				<input
-					className={ input }
-					type={ type }
-					id={ labelId }
-					value={ value }
-					onChange={ (event) => checkoutStore.change(field, event.target.value) }
-				/>
-			</label>
+			<div className={ elem } key={ labelId }>
+				<label className={ label } htmlFor={ labelId }>
+					<span className={ name }>{ title }</span>
+					<input
+						className={ input }
+						type={ type }
+						id={ labelId }
+						placeholder={ placeholder }
+						value={ value }
+						required={ required }
+						onChange={ (event) => checkoutStore.change(field, event.target.value) }
+					/>
+				</label>
+				{ (!valid && valid !== null) && <span className={ error }>{ message }</span> }
+			</div>
 		);
 	}
 
@@ -42,7 +49,7 @@ const Checkout = observer(() => {
 				{ formBody }
 				<div className={ wrap }>
 					<button className={ btn } type='button' onClick={ () => routerStore.moveTo('cart') }>Back</button>
-					<button className={ btn } type='button' onClick={ () => modalStore.switch(true) }>Order</button>
+					<button className={ btn } type='button' disabled={ !checkoutStore.formValid } onClick={ () => modalStore.switch(true) }>Order</button>
 				</div>
 			</form>
 			{ modalStore.modal }

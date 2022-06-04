@@ -7,7 +7,7 @@
 
 .label
 	display block
-	margin-bottom 10px
+	margin-bottom 5px
 
 .title
 	text-align center
@@ -40,3 +40,21 @@
 .wrap
 	display flex
 	justify-content center
+
+.elem
+	margin-bottom 5px
+
+	&:last-child
+		margin-bottom 10px
+
+.btn
+	&[disabled="disabled"]
+		opacity .5
+		cursor default
+
+.error
+	font-size: 12px;
+	margin-bottom: 10px;
+	display: inline-block;
+	color: #f00;
+	font-weight: 600;
