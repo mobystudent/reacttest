@@ -5,6 +5,7 @@ class Checkout {
 		makeObservable(this, {
 			formData: observable,
 			formValid: computed,
+			dataField: computed,
 			change: action
 		});
 	}
@@ -47,6 +48,16 @@ class Checkout {
 
 	get formValid() {
 		return Object.values(this.formData).every((field) => field.valid);
+	}
+
+	get dataField() {
+		const newData = {};
+
+		for (let field in this.formData) {
+			newData[field] = this.formData[field].value;
+		}
+
+		return newData;
 	}
 
 	change(name, value) {

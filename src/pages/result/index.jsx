@@ -10,21 +10,17 @@ function Result() {
 		text
 	} = styles;
 	const {
-		formData: {
-			name: {
-				value: nameUser
-			},
-			phone: {
-				value: namePhone
-			}
+		dataField: {
+			name,
+			phone
 		}
 	} = checkoutStore;
 
 	return (
 		<div className={ result }>
-			<h1 className={ title }>Congratulation { nameUser }</h1>
+			<h1 className={ title }>Congratulation { name }</h1>
 			<p className={ text }>Your order has been successfully sent <br/> Your total is { cartStore.total }</p>
-			<p className={ text }>We&quot;ll call on this number { namePhone }</p>
+			<p className={ text }>We&quot;ll call on this number { phone }</p>
 		</div>
 	);
 }
