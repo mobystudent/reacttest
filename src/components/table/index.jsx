@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { observer } from 'mobx-react';
 import Counter from '~c/counter';
 import cartStore from '~s/cart.store';
+import productsStore from '~s/products.store';
 import styles from './table.module.styl';
 
 const Table = observer(() => {
@@ -13,9 +14,10 @@ const Table = observer(() => {
 		btn
 	} = styles;
 
+	const checkedProducts = cartStore.products.map(({ id }) => productsStore.products.filter((product) => id === product.id)).flat();
 	const tableStuct = useMemo(() => {
-		return cartStore.products.map((product, i) => {
-			const { id, title, price, current } = product;
+		return checkedProducts.map((product, i) => {
+			const { id, title, price, rest } = product;
 
 			return (
 				<tr key={id}>
@@ -25,20 +27,19 @@ const Table = observer(() => {
 						{
 							<Counter
 								min={ 1 }
-								max={ 10 }
-								countDef={ current }
+								max={ rest }
 								onChange={ (count) => cartStore.count(count, i) }
 							/>
 						}
 					</th>
-					<th className={ td }>{ price * current }</th>
+					<th className={ td }>{ cartStore.total }</th>
 					<th className={ td }>
 						<button className={ btn } type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
 					</th>
 				</tr>
 			);
 		});
-	}, [btn, td]);
+	}, [btn, td, checkedProducts]);
 
 	return (
 		<>

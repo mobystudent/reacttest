@@ -3,18 +3,18 @@ import propTypes from 'prop-types';
 import styles from './counter.module.styl';
 
 function Counter(props) {
-	let { min, max, countDef, onChange } = props;
-	let [ stateCount, setCount ] = useState({
-		countItem: countDef,
-		inputValue: countDef
+	const { min, max, onChange } = props;
+	let [ count, setCount ] = useState({
+		countItem: 1,
+		inputValue: 1
 	});
 
 	function increase() {
-		check(stateCount.countItem + 1);
+		check(count.countItem + 1);
 	}
 
 	function decrease() {
-		check(stateCount.countItem - 1);
+		check(count.countItem - 1);
 	}
 
 	function check(countVal) {
@@ -51,10 +51,10 @@ function Counter(props) {
 			<input
 				className={ input }
 				type="text"
-				value={ stateCount.countItem }
+				value={ count.countItem }
 				onChange={({ target }) => checkType(parseInt(target.value))}
 				// onBlur={({ target }) => checkType(parseInt(target.value))}
-				// key={stateCount.countItem}
+				// key={count.countItem}
 			/>
 			<button className={ btn } type="button" onClick={ increase }>+</button>
 		</div>
@@ -68,7 +68,6 @@ Counter.defaultProps = {
 Counter.propTypes = {
 	min: propTypes.number.isRequired,
 	max: propTypes.number.isRequired,
-	countDef: propTypes.number.isRequired,
 	onChange: propTypes.func
 };
 

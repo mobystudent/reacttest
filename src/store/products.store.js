@@ -7,7 +7,6 @@ class Products {
 			description: 'Oukitel WP17 8300 mAh 8Gb/128Gb противоударный защищенный телефон камера ночного видения',
 			price: 12000,
 			rest: 10,
-			current: 1,
 			status: false
 		},
 		{
@@ -17,7 +16,6 @@ class Products {
 			description: 'Телефон противоударный Oukitel WP5 PRO 4GB/64Gb, 8000mAh, 8 ядер, IP68, IP69 влагозащищенный',
 			price: 22000,
 			rest: 5,
-			current: 1,
 			status: false
 		},
 		{
@@ -27,7 +25,6 @@ class Products {
 			description: 'Мобильный телефон Xiaomi Redmi 9C 2/32GB Midnight Gray',
 			price: 5000,
 			rest: 2,
-			current: 1,
 			status: false
 		},
 		{
@@ -37,7 +34,6 @@ class Products {
 			description: 'Мобильный телефон смартфон iHunt S21 Plus 2021 Blue',
 			price: 15000,
 			rest: 8,
-			current: 1,
 			status: false
 		}
 	];
