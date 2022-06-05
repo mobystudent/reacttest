@@ -1,12 +1,4 @@
-import { makeObservable, observable, computed, action } from 'mobx';
-
 class Products {
-	constructor() {
-		makeObservable(this, {
-			products: observable
-		});
-	}
-
 	products = [
 		{
 			id: 100,

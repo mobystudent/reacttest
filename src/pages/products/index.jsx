@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import productsStore from '~s/products.store';
-import { route } from '~/routes';
+import { route, paramRoute } from '~/routes';
 import styles from './products.module.styl';
 
 const Products = observer(() => {
@@ -30,7 +30,7 @@ const Products = observer(() => {
 				</picture>
 				<h3 className={ titleSt }>{ title }</h3>
 				<p className={ descriptionSt }>{ description }</p>
-				<Link className={ more } to={ route.cart }>More...</Link>
+				<Link className={ more } to={ paramRoute(route.product, id) }>More...</Link>
 				<span className={ priceSt }>Price: { price }</span>
 				<button className={ btn } type='text'>Buy</button>
 			</div>

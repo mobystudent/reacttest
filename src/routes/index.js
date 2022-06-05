@@ -3,6 +3,7 @@ import Cart from '~p/cart';
 import Checkout from '~p/checkout';
 import Result from '~p/result';
 import Products from '~p/products';
+import Product from '~p/product';
 import Error from '~p/404';
 
 const routes = [
@@ -23,8 +24,13 @@ const routes = [
 	},
 	{
 		name: 'products',
-		url: '/',
+		url: '/products',
 		component: <Products />
+	},
+	{
+		name: 'product',
+		url: '/product/:id',
+		component: <Product />
 	},
 	{
 		url: '/*',
@@ -37,5 +43,12 @@ export const route = routes.reduce((obj, route) => {
 
 	return obj;
 }, {});
+
+export const paramRoute = (page, params) => {
+	const startIndex = page.indexOf(':');
+	const getTmpParam = page.slice(startIndex);
+
+	return page.replace(getTmpParam, params);
+};
 
 export default routes;
