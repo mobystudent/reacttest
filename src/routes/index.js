@@ -21,7 +21,6 @@ const routes = [
 		component: <Result />
 	},
 	{
-		name: '404',
 		url: '/*',
 		component: <Error />
 	}

@@ -1,0 +1,21 @@
+@import '../../styl/main.styl';
+@import '../../styl/vars.styl';
+
+.nav
+	display flex
+	width 100%
+	padding 20px 30px
+	background $darkBlue
+
+.list
+	display flex
+	margin-left auto
+
+.item
+	&:not(:last-child)
+		margin-right 15px
+
+.link
+	font-size 16px
+	font-weight 500
+	color $white
