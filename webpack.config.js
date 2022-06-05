@@ -117,7 +117,8 @@ const config = {
 			'~': path.resolve(__dirname, 'src/'),
 			'~c': path.resolve(__dirname, 'src/components/'),
 			'~p': path.resolve(__dirname, 'src/pages/'),
-			'~s': path.resolve(__dirname, 'src/store/')
+			'~s': path.resolve(__dirname, 'src/store/'),
+			'~m': path.resolve(__dirname, 'src/main/')
 		},
 		extensions: ['.js', '.jsx']
 	},

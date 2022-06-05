@@ -33,7 +33,7 @@ const routes = [
 		component: <Product />
 	},
 	{
-		url: '/*',
+		url: '*',
 		component: <Error />
 	}
 ];
