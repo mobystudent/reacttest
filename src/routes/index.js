@@ -2,6 +2,7 @@ import React from 'react';
 import Cart from '~p/cart';
 import Checkout from '~p/checkout';
 import Result from '~p/result';
+import Error from '~p/404';
 
 const routes = [
 	{
@@ -18,6 +19,11 @@ const routes = [
 		name: 'result',
 		url: '/result',
 		component: <Result />
+	},
+	{
+		name: '404',
+		url: '/*',
+		component: <Error />
 	}
 ];
 
