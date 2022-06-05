@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "webpack --watch --mode development",
+		"dev": "webpack serve --mode development",
 		"build": "webpack --mode production"
 	},
 	"keywords": [],
@@ -41,7 +41,8 @@
 		"stylus": "^0.57.0",
 		"stylus-loader": "^6.2.0",
 		"webpack": "^5.70.0",
-		"webpack-cli": "^4.9.2"
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.9.1"
 	},
 	"dependencies": {
 		"@types/react": "^18.0.9",
@@ -50,6 +51,7 @@
 		"mobx-react": "^7.5.0",
 		"prop-types": "^15.8.1",
 		"react": "^18.1.0",
-		"react-dom": "^18.1.0"
+		"react-dom": "^18.1.0",
+		"react-router-dom": "^6.3.0"
 	}
 }

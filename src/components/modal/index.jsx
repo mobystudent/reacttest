@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 import modalStore from '~s/modal.store';
-import routerStore from '~s/router.store';
+import { route } from '~/routes';
 import styles from './modal.module.styl';
 
 const Modal = observer(() => {
@@ -19,7 +20,7 @@ const Modal = observer(() => {
 			<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
 			<div className={ btns }>
 				<button className={ btn } type='button' onClick={ () => modalStore.switch(false) }>Нет</button>
-				<button className={ btn } type='button' onClick={ () => routerStore.moveTo('result') }>Да</button>
+				<Link className={ btn } to={ route.result }>Да</Link>
 			</div>
 		</div>
 	);

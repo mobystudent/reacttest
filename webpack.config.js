@@ -9,6 +9,7 @@ const config = {
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'build'),
+		publicPath: '',
 		clean: true
 	},
 	module: {
@@ -113,11 +114,18 @@ const config = {
 	},
 	resolve: {
 		alias: {
+			'~': path.resolve(__dirname, 'src/'),
 			'~c': path.resolve(__dirname, 'src/components/'),
 			'~p': path.resolve(__dirname, 'src/pages/'),
 			'~s': path.resolve(__dirname, 'src/store/')
 		},
 		extensions: ['.js', '.jsx']
+	},
+	devServer: {
+		port: 3000,
+		hot: false,
+		liveReload: false,
+		historyApiFallback: true
 	}
 };
 

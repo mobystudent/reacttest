@@ -1,7 +1,8 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Link } from 'react-router-dom';
 import checkoutStore from '~s/checkout.store';
-import routerStore from '~s/router.store';
+import { route } from '~/routes';
 import modalStore from '~s/modal.store';
 import styles from './checkout.module.styl';
 
@@ -48,7 +49,7 @@ const Checkout = observer(() => {
 			<form className={ form } action='#'>
 				{ formBody }
 				<div className={ wrap }>
-					<button className={ btn } type='button' onClick={ () => routerStore.moveTo('cart') }>Back</button>
+					<Link className={ btn } to={ route.cart }>Back</Link>
 					<button className={ btn } type='button' disabled={ !checkoutStore.formValid } onClick={ () => modalStore.switch(true) }>Order</button>
 				</div>
 			</form>

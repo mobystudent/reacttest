@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Table from '~c/table';
-import routerStore from '~s/router.store';
+import { route } from '~/routes';
 import styles from './cart.module.styl';
 
 function Cart() {
@@ -16,7 +17,7 @@ function Cart() {
 			<h1 className={ title }>Корзина</h1>
 			<Table />
 			<div className={ openForm }>
-				<button className={ btn } type="button" onClick={ () => routerStore.moveTo('checkout') }>Send</button>
+				<Link className={ btn } to={ route.checkout }>Send</Link>
 			</div>
 		</div>
 	);
