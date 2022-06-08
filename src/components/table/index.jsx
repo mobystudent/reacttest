@@ -31,11 +31,12 @@ const Table = observer(() => {
 							<Counter
 								min={ 1 }
 								max={ rest }
+								defaultCount={ cartStore.countItem(id) }
 								onChange={ (count) => cartStore.count(count, i) }
 							/>
 						}
 					</th>
-					<th className={ td }>{ cartStore.total }</th>
+					<th className={ td }>{ cartStore.totalItem(id) }</th>
 					<th className={ td }>
 						<button className={ btn } type="button" onClick={ () => ( cartStore.delete(id) ) }>Delete</button>
 					</th>

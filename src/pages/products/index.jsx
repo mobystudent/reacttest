@@ -33,7 +33,7 @@ const Products = observer(() => {
 				<p className={ descriptionSt }>{ description }</p>
 				<Link className={ more } to={ paramRoute(route.product, id) }>More...</Link>
 				<span className={ priceSt }>Price: { price }</span>
-				<button className={ btn } type='text' onClick={ () => cartStore.add({ id, current: 1, price }) }>Buy</button>
+				<button className={ btn } type='text' onClick={ () => cartStore.add({ id, count: 1, price }) }>Buy</button>
 			</div>
 		);
 	});

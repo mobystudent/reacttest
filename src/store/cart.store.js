@@ -5,6 +5,8 @@ class Cart {
 		makeObservable(this, {
 			products: observable,
 			total: computed,
+			totalItem: action,
+			countItem: action,
 			count: action,
 			delete: action,
 			add: action
@@ -13,17 +15,28 @@ class Cart {
 
 	products = [];
 
-
 	get total() {
-		return this.products.reduce((sum, { price, current }) => sum + price * current, 0);
+		return this.products.reduce((sum, { price, count }) => sum + price * count, 0);
+	}
+
+	countItem(id) {
+		const findProduct = this.products.find((product) => product.id === id);
+
+		return findProduct.count;
+	}
+
+	totalItem(id) {
+		const findProduct = this.products.find((product) => product.id === id);
+
+		return findProduct.price * findProduct.count;
 	}
 
 	count(count, i) {
-		this.products[i].current = count;
+		this.products[i].count = count;
 	}
 
 	delete(idProd) {
-		this.products.forEach((prod, i, arr) => prod.id === idProd ? arr.splice(i, 1) : false);
+		this.products = this.products.filter((prod) => prod.id !== idProd);
 	}
 
 	add(id) {

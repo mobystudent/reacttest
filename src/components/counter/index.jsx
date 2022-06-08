@@ -3,8 +3,8 @@ import propTypes from 'prop-types';
 import styles from './counter.module.styl';
 
 function Counter(props) {
-	const { min, max, onChange } = props;
-	const refInput = useRef(1);
+	const { min, max, defaultCount, onChange } = props;
+	const refInput = useRef(defaultCount);
 
 	const increase = () => check(+refInput.current.value + 1);
 	const decrease = () => check(+refInput.current.value - 1);
@@ -34,7 +34,7 @@ function Counter(props) {
 			<input
 				className={ input }
 				type="text"
-				defaultValue={ refInput.current }
+				defaultValue={ defaultCount }
 				ref={ refInput }
 				onBlur={ checkType }
 			/>
@@ -50,6 +50,7 @@ Counter.defaultProps = {
 Counter.propTypes = {
 	min: propTypes.number.isRequired,
 	max: propTypes.number.isRequired,
+	defaultCount: propTypes.number.isRequired,
 	onChange: propTypes.func
 };
 
