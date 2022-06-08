@@ -10,6 +10,7 @@ const config = {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'build'),
 		publicPath: '',
+		assetModuleFilename: 'images/[name]__[hash:7].[ext]',
 		clean: true
 	},
 	module: {
@@ -77,8 +78,8 @@ const config = {
 				]
 			},
 			{
-				test: /\.(eot|ttf|woff2?|otf|svg)$/,
-				loader: 'file-loader'
+				test: /\.(png|svg|jpe?g|gif)$/,
+				type: 'asset/resource',
 			}
 		]
 	},
@@ -118,7 +119,8 @@ const config = {
 			'~c': path.resolve(__dirname, 'src/components/'),
 			'~p': path.resolve(__dirname, 'src/pages/'),
 			'~s': path.resolve(__dirname, 'src/store/'),
-			'~m': path.resolve(__dirname, 'src/main/')
+			'~m': path.resolve(__dirname, 'src/main/'),
+			'~i': path.resolve(__dirname, 'src/images/')
 		},
 		extensions: ['.js', '.jsx']
 	},

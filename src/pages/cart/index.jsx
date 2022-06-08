@@ -5,6 +5,7 @@ import Table from '~c/table';
 import { route } from '~/routes';
 import cartStore from '~s/cart.store';
 import styles from './cart.module.styl';
+import iconCart from '~i/icons/shop-cart.svg';
 
 const Cart = observer(() => {
 	const {
@@ -32,7 +33,7 @@ const Cart = observer(() => {
 					</>
 					:
 					<div className={ block }>
-						<img className={ img } src='../images/shop-cart.svg'/>
+						<img className={ img } src={ iconCart }/>
 						<p className={ text }>
 							<span>Cart is empty, go to </span>
 							<Link className={ link } to={ route.products }>products page</Link>
