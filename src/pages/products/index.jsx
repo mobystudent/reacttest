@@ -18,11 +18,29 @@ const Products = observer(() => {
 		descriptionSt,
 		priceSt,
 		more,
-		btn
+		btn,
+		added
 	} = styles;
 
 	const productsList = productsStore.products.map((product) => {
 		const { id, title, price, picture, description } = product;
+		const checkInCart = cartStore.products.some((cartProduct) => cartProduct.id === id);
+		const productBtn = checkInCart
+			?
+			<Link className={ `${btn} ${added}` } to={ route.cart }>Go to cart</Link>
+			:
+			<button
+				className={ btn }
+				type='text'
+				onClick={ () => cartStore.add(
+					{
+						id,
+						count: 1,
+						price
+					}
+				)}>
+				Buy
+			</button>
 
 		return (
 			<div className={ productSt } key={ id }>
@@ -33,7 +51,7 @@ const Products = observer(() => {
 				<p className={ descriptionSt }>{ description }</p>
 				<Link className={ more } to={ paramRoute(route.product, id) }>More...</Link>
 				<span className={ priceSt }>Price: { price }</span>
-				<button className={ btn } type='text' onClick={ () => cartStore.add({ id, count: 1, price }) }>Buy</button>
+				{ productBtn }
 			</div>
 		);
 	});

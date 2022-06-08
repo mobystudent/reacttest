@@ -43,7 +43,7 @@ const Table = observer(() => {
 				</tr>
 			);
 		});
-	}, [btn, td, checkedProducts]);
+	}, [btn, td, tdMin, checkedProducts]);
 
 	return (
 		<>
