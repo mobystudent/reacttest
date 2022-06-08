@@ -1,44 +1,27 @@
-import React, { useState, memo } from 'react';
+import React, { useRef, memo } from 'react';
 import propTypes from 'prop-types';
 import styles from './counter.module.styl';
 
 function Counter(props) {
 	const { min, max, onChange } = props;
-	let [ count, setCount ] = useState({
-		countItem: 1,
-		inputValue: 1
-	});
+	const refInput = useRef(1);
 
-	function increase() {
-		check(count.countItem + 1);
-	}
-
-	function decrease() {
-		check(count.countItem - 1);
-	}
+	const increase = () => check(+refInput.current.value + 1);
+	const decrease = () => check(+refInput.current.value - 1);
 
 	function check(countVal) {
 		const checkCount = Math.min(Math.max(min, countVal), max);
-
-		setCount({
-			countItem: checkCount,
-			inputValue: checkCount
-		});
+		refInput.current.value = checkCount;
 
 		onChange(checkCount);
 	}
 
-	function checkType(value) {
-		const countValue = isNaN(value) ? min : value;
+	function checkType() {
+		const countValue = isNaN(refInput.current.value) ? min : refInput.current.value;
 
 		check(countValue);
 	}
 
-	// function setValue(newValue) {
-	// 	setCount({
-	// 		inputValue: newValue
-	// 	});
-	// }
 	const {
 		counter,
 		input,
@@ -51,10 +34,9 @@ function Counter(props) {
 			<input
 				className={ input }
 				type="text"
-				value={ count.countItem }
-				onChange={({ target }) => checkType(parseInt(target.value))}
-				// onBlur={({ target }) => checkType(parseInt(target.value))}
-				// key={count.countItem}
+				defaultValue={ refInput.current }
+				ref={ refInput }
+				onBlur={ checkType }
 			/>
 			<button className={ btn } type="button" onClick={ increase }>+</button>
 		</div>

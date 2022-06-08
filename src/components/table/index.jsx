@@ -10,6 +10,8 @@ const Table = observer(() => {
 		table,
 		th,
 		td,
+		thMin,
+		tdMin,
 		total,
 		btn
 	} = styles;
@@ -21,6 +23,7 @@ const Table = observer(() => {
 
 			return (
 				<tr key={id}>
+					<th className={ `${td} ${tdMin}` }>{ i + 1 }</th>
 					<th className={ td }>{ title }</th>
 					<th className={ td }>{ price }</th>
 					<th className={ td }>
@@ -46,6 +49,7 @@ const Table = observer(() => {
 			<table className={ table }>
 				<thead className="table__head">
 					<tr>
+						<th className={ `${th} ${thMin}` }>#</th>
 						<th className={ th }>Title</th>
 						<th className={ th }>Price</th>
 						<th className={ th }>Count</th>
@@ -54,7 +58,7 @@ const Table = observer(() => {
 					</tr>
 				</thead>
 				<tbody className="table__body">
-					{tableStuct}
+					{ tableStuct }
 				</tbody>
 			</table>
 			<div className={ total }>

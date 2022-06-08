@@ -15,7 +15,7 @@ class Products {
 			picture: 'https://images.prom.ua/2641997743_w200_h200_telefon-protivoudarnyj-oukitel.jpg',
 			description: 'Телефон противоударный Oukitel WP5 PRO 4GB/64Gb, 8000mAh, 8 ядер, IP68, IP69 влагозащищенный',
 			price: 22000,
-			rest: 5,
+			rest: 12,
 			status: false
 		},
 		{
@@ -24,7 +24,7 @@ class Products {
 			picture: 'https://images.prom.ua/3328026371_w200_h200_mobilnyj-telefon-xiaomi.jpg',
 			description: 'Мобильный телефон Xiaomi Redmi 9C 2/32GB Midnight Gray',
 			price: 5000,
-			rest: 2,
+			rest: 15,
 			status: false
 		},
 		{
