@@ -29,18 +29,7 @@ const Products = observer(() => {
 			?
 			<Link className={ `${btn} ${added}` } to={ route.cart }>Go to cart</Link>
 			:
-			<button
-				className={ btn }
-				type='text'
-				onClick={ () => cartStore.add(
-					{
-						id,
-						count: 1,
-						price
-					}
-				)}>
-				Buy
-			</button>
+			<button className={ btn } type='text' onClick={ () => cartStore.add({ id, price }) }>Buy</button>
 
 		return (
 			<div className={ productSt } key={ id }>

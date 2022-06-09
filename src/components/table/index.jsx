@@ -32,7 +32,7 @@ const Table = observer(() => {
 								min={ 1 }
 								max={ rest }
 								defaultCount={ cartStore.countItem(id) }
-								onChange={ (count) => cartStore.count(count, i) }
+								onChange={ (count) => cartStore.count(id, count) }
 							/>
 						}
 					</th>

@@ -31,16 +31,20 @@ class Cart {
 		return findProduct.price * findProduct.count;
 	}
 
-	count(count, i) {
-		this.products[i].count = count;
+	count(id, count) {
+		this.products.forEach((product) => {
+			if (product.id === id) {
+				product.count = count;
+			}
+		});
 	}
 
-	delete(idProd) {
-		this.products = this.products.filter((prod) => prod.id !== idProd);
+	delete(id) {
+		this.products = this.products.filter((product) => product.id !== id);
 	}
 
 	add(id) {
-		this.products.push(id);
+		this.products.push({ ...id, count: 1 });
 	}
 }
 
