@@ -16,7 +16,7 @@ const Table = observer(() => {
 		btn
 	} = styles;
 
-	const checkedProducts = cartStore.products.map(({ id }) => productsStore.products.filter((product) => id === product.id)).flat();
+	const checkedProducts = cartStore.products.map(({ id }) => productsStore.products.get(id));
 	const tableStuct = useMemo(() => {
 		return checkedProducts.map((product, i) => {
 			const { id, title, price, rest } = product;

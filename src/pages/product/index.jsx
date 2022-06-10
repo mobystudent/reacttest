@@ -19,7 +19,7 @@ function Product() {
 		btnBuy,
 		btnCart
 	} = styles;
-	const [ { id, title, picture, description, price } = {} ] = productsStore.products.filter(({ id }) => id === +idProduct);
+	const { id, title, picture, description, price } = productsStore.products.get(+idProduct);
 
 	return (
 		<div className={ product }>

@@ -22,7 +22,7 @@ const Products = observer(() => {
 		added
 	} = styles;
 
-	const productsList = productsStore.products.map((product) => {
+	const productsList = [...productsStore.products.values()].map((product) => {
 		const { id, title, price, picture, description } = product;
 		const checkInCart = cartStore.products.some((cartProduct) => cartProduct.id === id);
 		const productBtn = checkInCart
