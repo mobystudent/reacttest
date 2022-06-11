@@ -19,12 +19,10 @@ const Checkout = observer(() => {
 		elem,
 		error
 	} = styles;
-	const formBody = [];
+	const formBody = [...checkoutStore.formData].map(([ nameKey, object ]) => {
+		const { labelId, title, type, placeholder, required, value, valid, message = '' } = object;
 
-	for (let field in checkoutStore.formData) {
-		const { labelId, title, type, placeholder, required, value, valid, message = '' } = checkoutStore.formData[field];
-
-		formBody.push(
+		return (
 			<div className={ elem } key={ labelId }>
 				<label className={ label } htmlFor={ labelId }>
 					<span className={ name }>{ title }</span>
@@ -35,13 +33,13 @@ const Checkout = observer(() => {
 						placeholder={ placeholder }
 						value={ value }
 						required={ required }
-						onChange={ (event) => checkoutStore.change(field, event.target.value) }
+						onChange={ (event) => checkoutStore.change(nameKey, event.target.value) }
 					/>
 				</label>
 				{ (!valid && valid !== null) && <span className={ error }>{ message }</span> }
 			</div>
 		);
-	}
+	});
 
 	return (
 		<div className={ checkout }>
