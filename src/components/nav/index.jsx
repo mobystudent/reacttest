@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import routes from '~/routes';
 import styles from './nav.module.styl';
 
@@ -16,7 +16,7 @@ function Nav() {
 
 		return (
 			<li key={ name } className={ item }>
-				<Link className={ link } to={ name }>{ name }</Link>
+				<NavLink className={ link } to={ name }>{ name }</NavLink>
 			</li>
 		);
 	});
