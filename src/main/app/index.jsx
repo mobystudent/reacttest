@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import Nav from '~c/nav';
+import Header from '~c/header';
 import routes from '~/routes';
 import styles from './app.module.styl';
 
@@ -17,7 +17,7 @@ const App = observer(() => {
 	return (
 		<Router>
 			<div className={ app }>
-				<Nav />
+				<Header />
 				<Routes>
 					{ routesMap }
 				</Routes>
