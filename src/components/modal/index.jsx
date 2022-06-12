@@ -11,18 +11,22 @@ const Modal = observer(() => {
 		title,
 		text,
 		btns,
-		btn
+		btn,
+		background
 	} = styles;
 
 	return (
-		<div className={ block }>
-			<h2 className={ title }>Подтвердите отправку данных</h2>
-			<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
-			<div className={ btns }>
-				<button className={ btn } type='button' onClick={ () => modalStore.switch(false) }>Нет</button>
-				<Link className={ btn } to={ route.result }>Да</Link>
+		<>
+			<div className={ block }>
+				<h2 className={ title }>Подтвердите отправку данных</h2>
+				<p className={ text }>Вы уверены, что хотите отправить заявку?</p>
+				<div className={ btns }>
+					<button className={ btn } type='button' onClick={ () => modalStore.switch(false) }>Нет</button>
+					<Link className={ btn } to={ route.result }>Да</Link>
+				</div>
 			</div>
-		</div>
+			<div className={ background }></div>
+		</>
 	);
 });
 

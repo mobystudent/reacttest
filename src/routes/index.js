@@ -8,6 +8,11 @@ import Error from '~p/404';
 
 const routes = [
 	{
+		name: 'home',
+		url: '/',
+		component: <Products />
+	},
+	{
 		name: 'cart',
 		url: '/cart',
 		component: <Cart />
